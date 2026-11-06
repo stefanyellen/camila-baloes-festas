@@ -1,3 +1,123 @@
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
 .cabecalho {
-    background-color: pink;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.cabecalho .container {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #c45a78;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    list-style: none;
+}
+
+.menu a {
+    color: #333333;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.menu a:hover {
+    color: #c45a78;
+}
+/* =========================
+   MENU MOBILE
+========================= */
+
+.botao-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: #333333;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+/* =========================
+Aplicar as regras abaixo somente quando a tela tiver 768 pixels de largura ou menos.
+========================= */
+@media (max-width: 768px) {
+
+    .botao-menu {
+        display: block;
+    }
+
+    .navegacao {
+        display: none;
+
+        position: absolute;
+        top: 80px;
+        left: 0;
+
+        width: 100%;
+        background-color: #ffffff;
+
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .navegacao.ativo {
+        display: block;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu a {
+        display: block;
+        padding: 16px;
+    }
 }
