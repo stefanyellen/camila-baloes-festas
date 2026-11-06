@@ -1,3 +1,17 @@
+:root {
+    --cor-principal: #a67c52;
+    --cor-principal-escura: #7f5d3d;
+
+    --cor-fundo: #faf7f2;
+    --cor-card: #ffffff;
+
+    --cor-texto: #292929;
+    --cor-texto-secundario: #666666;
+
+    --cor-borda: #e8e0d8;
+}
+
+
 /* =========================
    CONFIGURAÇÕES GERAIS
 ========================= */
@@ -14,14 +28,20 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #333333;
+
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
 }
 
 .container {
     width: 90%;
     max-width: 1200px;
+
     margin: 0 auto;
+}
+
+section {
+    scroll-margin-top: 100px;
 }
 
 
@@ -31,8 +51,14 @@ body {
 
 .cabecalho {
     width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #eeeeee;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background-color: var(--cor-fundo);
+
+    border-bottom: 1px solid var(--cor-borda);
 }
 
 .cabecalho .container {
@@ -44,46 +70,354 @@ body {
 }
 
 .logo {
-    color: #c45a78;
+    color: var(--cor-principal);
+
     font-size: 1.4rem;
     font-weight: bold;
+
     text-decoration: none;
 }
+
+
+/* =========================
+   MENU
+========================= */
 
 .menu {
     display: flex;
     align-items: center;
+
     gap: 32px;
 
     list-style: none;
 }
 
 .menu a {
-    color: #333333;
+    color: var(--cor-texto);
+
     text-decoration: none;
+
     font-size: 1rem;
+
     transition: color 0.2s ease;
 }
 
 .menu a:hover {
-    color: #c45a78;
+    color: var(--cor-principal);
 }
+
+
 /* =========================
-   MENU MOBILE
+   HERO
+========================= */
+
+.hero {
+    padding: 80px 0;
+
+    background-color: var(--cor-fundo);
+}
+
+.hero-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 60px;
+}
+
+.hero-texto {
+    flex: 1;
+}
+
+.hero-destaque {
+    display: inline-block;
+
+    margin-bottom: 16px;
+
+    color: var(--cor-principal);
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    max-width: 600px;
+
+    margin-bottom: 24px;
+
+    color: var(--cor-texto);
+
+    font-size: 3rem;
+
+    line-height: 1.1;
+}
+
+.hero p {
+    max-width: 520px;
+
+    margin-bottom: 32px;
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   BOTÃO PRINCIPAL
+========================= */
+
+.botao-principal {
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    background-color: var(--cor-principal);
+    color: #ffffff;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    border-radius: 8px;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.botao-principal:hover {
+    background-color: var(--cor-principal-escura);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   IMAGEM DA HERO
+========================= */
+
+.hero-imagem {
+    flex: 1;
+}
+
+.hero-imagem img {
+    display: block;
+
+    width: 100%;
+    height: 520px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+}
+
+
+/* =========================
+   SERVIÇOS
+========================= */
+
+.servicos {
+    padding: 80px 0;
+}
+
+.titulo-secao {
+    max-width: 650px;
+
+    margin: 0 auto 48px;
+
+    text-align: center;
+}
+
+.titulo-secao span {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: var(--cor-principal);
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+.titulo-secao h2 {
+    margin-bottom: 16px;
+
+    color: var(--cor-texto);
+
+    font-size: 2.2rem;
+
+    line-height: 1.2;
+}
+
+.titulo-secao p {
+    color: var(--cor-texto-secundario);
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   CARDS DE SERVIÇOS
+========================= */
+
+.lista-servicos {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 24px;
+}
+
+.card-servico {
+    padding: 32px;
+
+    background-color: var(--cor-card);
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.card-servico:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.icone-servico {
+    margin-bottom: 20px;
+
+    font-size: 2rem;
+}
+
+.card-servico h3 {
+    margin-bottom: 12px;
+
+    color: var(--cor-texto);
+
+    font-size: 1.25rem;
+}
+
+.card-servico p {
+    color: var(--cor-texto-secundario);
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   GALERIA
+========================= */
+
+.galeria {
+    padding: 80px 0;
+}
+
+.grade-galeria {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.item-galeria {
+    overflow: hidden;
+
+    border-radius: 12px;
+}
+
+.item-galeria img {
+    display: block;
+
+    width: 100%;
+    height: 320px;
+
+    object-fit: cover;
+
+    transition: transform 0.4s ease;
+}
+
+.item-galeria:hover img {
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   BOTÃO DO MENU MOBILE
 ========================= */
 
 .botao-menu {
     display: none;
+
     background: none;
+
     border: none;
-    color: #333333;
+
+    color: var(--cor-texto);
+
     font-size: 1.8rem;
+
     cursor: pointer;
 }
+
+
 /* =========================
-Aplicar as regras abaixo somente quando a tela tiver 768 pixels de largura ou menos.
+   RODAPÉ
 ========================= */
+
+footer {
+    background-color: var(--cor-fundo);
+
+    border-top: 1px solid var(--cor-borda);
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+   Telas de até 900px
+========================= */
+
+@media (max-width: 900px) {
+
+    /* SERVIÇOS */
+
+    .lista-servicos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* GALERIA */
+
+    .grade-galeria {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+   Telas de até 768px
+========================= */
+
 @media (max-width: 768px) {
+
+    /* MENU */
 
     .botao-menu {
         display: block;
@@ -93,13 +427,15 @@ Aplicar as regras abaixo somente quando a tela tiver 768 pixels de largura ou me
         display: none;
 
         position: absolute;
+
         top: 80px;
         left: 0;
 
         width: 100%;
-        background-color: #ffffff;
 
-        border-bottom: 1px solid #eeeeee;
+        background-color: var(--cor-fundo);
+
+        border-bottom: 1px solid var(--cor-borda);
     }
 
     .navegacao.ativo {
@@ -108,16 +444,90 @@ Aplicar as regras abaixo somente quando a tela tiver 768 pixels de largura ou me
 
     .menu {
         flex-direction: column;
+
         gap: 0;
     }
 
     .menu li {
         width: 100%;
+
         text-align: center;
     }
 
     .menu a {
         display: block;
+
         padding: 16px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding: 56px 0;
+    }
+
+    .hero-conteudo {
+        flex-direction: column;
+
+        gap: 40px;
+    }
+
+    .hero-texto {
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero-imagem {
+        width: 100%;
+    }
+
+    .hero-imagem img {
+        height: 420px;
+    }
+
+
+    /* SERVIÇOS */
+
+    .servicos {
+        padding: 56px 0;
+    }
+
+    .titulo-secao {
+        margin-bottom: 32px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 1.8rem;
+    }
+
+    .lista-servicos {
+        grid-template-columns: 1fr;
+    }
+
+    .card-servico {
+        padding: 24px;
+    }
+
+
+    /* GALERIA */
+
+    .galeria {
+        padding: 56px 0;
+    }
+
+    .grade-galeria {
+        grid-template-columns: 1fr;
+    }
+
+    .item-galeria img {
+        height: 360px;
     }
 }
