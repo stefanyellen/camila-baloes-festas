@@ -1,3 +1,7 @@
+/* =========================
+   ELEMENTOS DO MENU
+========================= */
+
 const botaoMenu = document.querySelector(".botao-menu");
 const navegacao = document.querySelector(".navegacao");
 const linksMenu = document.querySelectorAll(".menu a");
@@ -58,9 +62,6 @@ function rolarSuavemente(destino, duracao = 600) {
         );
 
 
-        /* Movimento começa devagar,
-           acelera e termina devagar */
-
         const suavizacao =
             progresso < 0.5
                 ? 2 * progresso * progresso
@@ -104,12 +105,8 @@ linksMenu.forEach(function (link) {
         }
 
 
-        /* Impede o pulo padrão do navegador */
-
         event.preventDefault();
 
-
-        /* Fecha o menu mobile */
 
         navegacao.classList.remove("ativo");
 
@@ -124,8 +121,210 @@ linksMenu.forEach(function (link) {
         );
 
 
-        /* Faz a página deslizar */
-
         rolarSuavemente(destino);
     });
+});
+
+
+/* =========================
+   ELEMENTOS DA GALERIA
+========================= */
+
+const imagensGaleria =
+    document.querySelectorAll(".item-galeria img");
+
+const lightbox =
+    document.querySelector("#lightbox");
+
+const imagemLightbox =
+    document.querySelector(".lightbox-imagem");
+
+const contadorLightbox =
+    document.querySelector(".lightbox-contador");
+
+const botaoFecharLightbox =
+    document.querySelector(".lightbox-fechar");
+
+const botaoAnterior =
+    document.querySelector(".lightbox-anterior");
+
+const botaoProxima =
+    document.querySelector(".lightbox-proxima");
+
+
+/*
+    Guarda qual imagem está aberta.
+
+    0 = primeira imagem
+    1 = segunda imagem
+    2 = terceira imagem
+    ...
+*/
+
+let imagemAtual = 0;
+
+
+/* =========================
+   MOSTRAR IMAGEM
+========================= */
+
+function mostrarImagem(indice) {
+
+    /*
+        Se chegarmos depois da última imagem,
+        voltamos para a primeira.
+    */
+
+    if (indice >= imagensGaleria.length) {
+        indice = 0;
+    }
+
+
+    /*
+        Se tentarmos voltar antes da primeira,
+        vamos para a última.
+    */
+
+    if (indice < 0) {
+        indice = imagensGaleria.length - 1;
+    }
+
+
+    imagemAtual = indice;
+
+
+    const imagemSelecionada =
+        imagensGaleria[imagemAtual];
+
+
+    imagemLightbox.src =
+        imagemSelecionada.src;
+
+    imagemLightbox.alt =
+        imagemSelecionada.alt;
+
+
+    contadorLightbox.textContent =
+        `${imagemAtual + 1} / ${imagensGaleria.length}`;
+}
+
+
+/* =========================
+   ABRIR LIGHTBOX
+========================= */
+
+function abrirLightbox(indice) {
+
+    mostrarImagem(indice);
+
+    lightbox.classList.add("ativo");
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =========================
+   FECHAR LIGHTBOX
+========================= */
+
+function fecharLightbox() {
+
+    lightbox.classList.remove("ativo");
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow = "";
+}
+
+
+/* =========================
+   CLIQUE NAS IMAGENS
+========================= */
+
+imagensGaleria.forEach(function (imagem, indice) {
+
+    imagem.addEventListener("click", function () {
+
+        abrirLightbox(indice);
+    });
+});
+
+
+/* =========================
+   BOTÃO PRÓXIMA
+========================= */
+
+botaoProxima.addEventListener("click", function () {
+
+    mostrarImagem(imagemAtual + 1);
+});
+
+
+/* =========================
+   BOTÃO ANTERIOR
+========================= */
+
+botaoAnterior.addEventListener("click", function () {
+
+    mostrarImagem(imagemAtual - 1);
+});
+
+
+/* =========================
+   BOTÃO FECHAR
+========================= */
+
+botaoFecharLightbox.addEventListener("click", function () {
+
+    fecharLightbox();
+});
+
+
+/* =========================
+   FECHAR CLICANDO NO FUNDO
+========================= */
+
+lightbox.addEventListener("click", function (event) {
+
+    if (event.target === lightbox) {
+        fecharLightbox();
+    }
+});
+
+
+/* =========================
+   CONTROLES PELO TECLADO
+========================= */
+
+document.addEventListener("keydown", function (event) {
+
+    if (!lightbox.classList.contains("ativo")) {
+        return;
+    }
+
+
+    if (event.key === "ArrowRight") {
+
+        mostrarImagem(imagemAtual + 1);
+    }
+
+
+    if (event.key === "ArrowLeft") {
+
+        mostrarImagem(imagemAtual - 1);
+    }
+
+
+    if (event.key === "Escape") {
+
+        fecharLightbox();
+    }
 });

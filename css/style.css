@@ -337,9 +337,23 @@ section {
 }
 
 .item-galeria {
-    overflow: hidden;
+    position: relative;
 
     border-radius: 12px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.item-galeria:hover {
+    transform: scale(1.04);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+    z-index: 2;
 }
 
 .item-galeria img {
@@ -350,11 +364,173 @@ section {
 
     object-fit: cover;
 
-    transition: transform 0.4s ease;
+    border-radius: 12px;
 }
 
-.item-galeria:hover img {
-    transform: scale(1.05);
+
+/* =========================
+   LIGHTBOX DA GALERIA
+========================= */
+
+.lightbox {
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.9);
+
+    z-index: 2000;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.ativo {
+    display: flex;
+}
+
+.lightbox-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 80%;
+    height: 90%;
+}
+
+.lightbox-imagem {
+    display: block;
+
+    max-width: 100%;
+    max-height: 80vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+}
+
+.lightbox-contador {
+    margin-top: 16px;
+
+    color: #ffffff;
+
+    font-size: 0.95rem;
+}
+
+.lightbox-fechar,
+.lightbox-anterior,
+.lightbox-proxima {
+    position: absolute;
+
+    background: none;
+
+    border: none;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    z-index: 2001;
+}
+
+.lightbox-fechar {
+    top: 24px;
+    right: 32px;
+
+    font-size: 2.5rem;
+}
+
+.lightbox-anterior,
+.lightbox-proxima {
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 3rem;
+}
+
+.lightbox-anterior {
+    left: 32px;
+}
+
+.lightbox-proxima {
+    right: 32px;
+}
+
+
+/* =========================
+   SOBRE NÓS
+========================= */
+
+.sobre {
+    padding: 80px 0;
+}
+
+.sobre-conteudo {
+    display: flex;
+    align-items: center;
+
+    gap: 60px;
+}
+
+.sobre-imagem {
+    flex: 1;
+}
+
+.sobre-imagem img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 16px;
+}
+
+.sobre-texto {
+    flex: 1;
+}
+
+.sobre-destaque {
+    display: inline-block;
+
+    margin-bottom: 16px;
+
+    color: var(--cor-principal);
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+.sobre-texto h2 {
+    margin-bottom: 24px;
+
+    color: var(--cor-texto);
+
+    font-size: 2.2rem;
+
+    line-height: 1.2;
+}
+
+.sobre-texto p {
+    margin-bottom: 16px;
+
+    color: var(--cor-texto-secundario);
+
+    line-height: 1.7;
 }
 
 
@@ -529,5 +705,70 @@ footer {
 
     .item-galeria img {
         height: 360px;
+    }
+
+    .item-galeria:hover {
+        transform: scale(1.02);
+    }
+
+
+    /* LIGHTBOX */
+
+    .lightbox-conteudo {
+        width: 75%;
+        height: 85%;
+    }
+
+    .lightbox-imagem {
+        max-height: 75vh;
+    }
+
+    .lightbox-fechar {
+        top: 16px;
+        right: 20px;
+
+        font-size: 2.2rem;
+    }
+
+    .lightbox-anterior,
+    .lightbox-proxima {
+        font-size: 2.2rem;
+    }
+
+    .lightbox-anterior {
+        left: 12px;
+    }
+
+    .lightbox-proxima {
+        right: 12px;
+    }
+
+
+    /* SOBRE NÓS */
+
+    .sobre {
+        padding: 56px 0;
+    }
+
+    .sobre-conteudo {
+        flex-direction: column;
+
+        gap: 40px;
+    }
+
+    .sobre-imagem {
+        width: 100%;
+    }
+
+    .sobre-imagem img {
+        height: auto;
+    }
+
+    .sobre-texto {
+        text-align: center;
+    }
+
+    .sobre-texto h2 {
+        font-size: 1.8rem;
     }
 }
